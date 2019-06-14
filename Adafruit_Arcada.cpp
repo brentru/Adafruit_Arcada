@@ -49,11 +49,7 @@ bool Adafruit_Arcada::begin(void) {
   pixels.updateLength(ARCADA_NEOPIXEL_NUM);
   pixels.setPin(ARCADA_NEOPIXEL_PIN);
   pixels.begin();
-  delay(10);
   pixels.setBrightness(20);
-  pixels.fill(0);
-  pixels.show();  // turn off
-  delay(10);
   pixels.show();  // turn off
 
   _touchscreen = NULL;
@@ -108,6 +104,16 @@ bool Adafruit_Arcada::begin(void) {
   }
   if (hasAccel()) {
     accel.setRange(LIS3DH_RANGE_4_G);   // 2, 4, 8 or 16 G!
+  }
+#endif
+
+#ifdef SPIWIFI
+  WiFi.status();
+  delay(100);
+  if (WiFi.status() == WL_NO_MODULE) {
+    _has_wifi = false;
+  } else {
+    _has_wifi = true;
   }
 #endif
 
