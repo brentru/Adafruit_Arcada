@@ -252,6 +252,7 @@
 
   #define ARCADA_USE_JSON
   #define ARCADA_USE_QSPI_FS
+//#define ARCADA_USE_SD_FS
 
   #define ARCADA_ACCEL_TYPE ARCADA_ACCEL_LIS3DH
 
@@ -373,9 +374,7 @@ class Adafruit_Arcada : public ARCADA_TFT_TYPE {
   bool hasAccel(void) { return _has_accel; }
 #endif
 
-#ifdef SPIWIFI
   bool hasWiFi(void) { return _has_wifi; }
-#endif
 
 #ifdef ARCADA_USE_JSON
   StaticJsonDocument<256> configJSON;  ///< The object to store our various settings, you need to restore/save this with (load/save)ConfigurationFile
